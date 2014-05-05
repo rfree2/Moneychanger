@@ -1,0 +1,64 @@
+diff -Nuar bitcoin-api-org/Makefile.Release bitcoin-api/Makefile.Release
+--- bitcoin-api-org/Makefile.Release	2014-05-05 15:22:48.404721678 +0200
++++ bitcoin-api/Makefile.Release	2014-05-05 15:25:03.478725280 +0200
+@@ -131,7 +131,6 @@
+ 
+ clean:compiler_clean 
+ 	-$(DEL_FILE) $(OBJECTS)
+-	-$(DEL_FILE) release/bitcoin-api.gch/c release/bitcoin-api.gch/c++
+ 	-$(DEL_FILE) *~ core *.core
+ 
+ 
+@@ -142,15 +141,6 @@
+ 	-$(DEL_FILE) Makefile.Release
+ 
+ 
+-###### Prefix headers
+-release/bitcoin-api.gch/c: ../../src/core/stable.hpp 
+-	@$(CHK_DIR_EXISTS) release/bitcoin-api.gch/ || $(MKDIR) release/bitcoin-api.gch/ 
+-	$(CC) $(CFLAGS) $(INCPATH) -x c-header -c ../../src/core/stable.hpp -o release/bitcoin-api.gch/c
+-
+-release/bitcoin-api.gch/c++: ../../src/core/stable.hpp 
+-	@$(CHK_DIR_EXISTS) release/bitcoin-api.gch/ || $(MKDIR) release/bitcoin-api.gch/ 
+-	$(CXX) $(CXXFLAGS) $(INCPATH) -x c++-header -c ../../src/core/stable.hpp -o release/bitcoin-api.gch/c++
+-
+ check: first
+ 
+ mocclean: compiler_moc_header_clean compiler_moc_source_clean
+@@ -178,28 +168,28 @@
+ 
+ ####### Compile
+ 
+-release/bitcoinapi.o: ../../src/bitcoin-api/bitcoinapi.cpp release/bitcoin-api.gch/c++
++release/bitcoinapi.o: ../../src/bitcoin-api/bitcoinapi.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/bitcoinapi.o ../../src/bitcoin-api/bitcoinapi.cpp
+ 
+-release/btchelper.o: ../../src/bitcoin-api/btchelper.cpp release/bitcoin-api.gch/c++
++release/btchelper.o: ../../src/bitcoin-api/btchelper.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/btchelper.o ../../src/bitcoin-api/btchelper.cpp
+ 
+-release/btcjson.o: ../../src/bitcoin-api/btcjson.cpp release/bitcoin-api.gch/c++
++release/btcjson.o: ../../src/bitcoin-api/btcjson.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/btcjson.o ../../src/bitcoin-api/btcjson.cpp
+ 
+-release/btcmodules.o: ../../src/bitcoin-api/btcmodules.cpp release/bitcoin-api.gch/c++
++release/btcmodules.o: ../../src/bitcoin-api/btcmodules.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/btcmodules.o ../../src/bitcoin-api/btcmodules.cpp
+ 
+-release/btcobjects.o: ../../src/bitcoin-api/btcobjects.cpp release/bitcoin-api.gch/c++
++release/btcobjects.o: ../../src/bitcoin-api/btcobjects.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/btcobjects.o ../../src/bitcoin-api/btcobjects.cpp
+ 
+-release/btcrpccurl.o: ../../src/bitcoin-api/btcrpccurl.cpp release/bitcoin-api.gch/c++
++release/btcrpccurl.o: ../../src/bitcoin-api/btcrpccurl.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/btcrpccurl.o ../../src/bitcoin-api/btcrpccurl.cpp
+ 
+-release/btctest.o: ../../src/bitcoin-api/btctest.cpp release/bitcoin-api.gch/c++
++release/btctest.o: ../../src/bitcoin-api/btctest.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/btctest.o ../../src/bitcoin-api/btctest.cpp
+ 
+-release/MTBitcoin.o: ../../src/bitcoin-api/MTBitcoin.cpp release/bitcoin-api.gch/c++
++release/MTBitcoin.o: ../../src/bitcoin-api/MTBitcoin.cpp 
+ 	$(CXX) -c -include release/bitcoin-api $(CXXFLAGS) $(INCPATH) -o release/MTBitcoin.o ../../src/bitcoin-api/MTBitcoin.cpp
+ 
+ ####### Install
